@@ -1,0 +1,25 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<app-uimessage [message]="noUsersMessage" *ngIf="users.length == 0 && !isLoading"></app-uimessage>
+<div class="card-columns" *ngIf="users.length > 0 && !isLoading">
+  <div class="card bg-twitter-light" *ngFor="let user of users">
+    <img [src] = "user.image | noImage" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{ user.name }} </h5>
+      <label class="badge"
+        [ngClass]="user.enabled? 'badge-success': 'badge-danger'">{{ user.enabled | changeBoolean: ['Habilitado', 'Inhabilitado'] }}</label>
+      <p class="card-text">{{ user.authority.alias }}</p>
+      <div>
+        <a [routerLink]="[UPDATE_USER_ROUTE, user.id]" class="btn btn-info mr-1" title="Editar">
+          <i class="fa fa-pen"></i>
+        </a>
+        <button type="button" (click) = "deleteUser(user)" class="btn btn-danger mr-1" title="Eliminar">
+          <i class="fa fa-trash"></i>
+        </button>
+        <button (click) = "openChangePasswordModal(user)" type="button" class="btn btn-warning" title="Cambiar Contraseña">
+          <i class="fa fa-key"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-change-password [user] = "chosenUser"></app-change-password>

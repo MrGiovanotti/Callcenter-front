@@ -1,0 +1,60 @@
+.search {
+  float: right;
+  height: 45px !important;
+  border-radius: 5px;
+  width: 200px;
+  padding-left: 10px;
+}
+
+.paginator {
+  clear: both;
+}
+
+
+/* ============================================================== */
+
+.list-table {
+  border-bottom:  1px solid #4193B0;
+}
+.list-table tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 794px) {
+  .list-table thead {
+    display: none;
+  }
+
+  .list-table tr {
+    margin-bottom: 1rem;
+    border-bottom: 5px solid #4193B0;
+    display: block;
+  }
+
+  .list-table th, .list-table td {
+    font-size: 0.8rem;
+  }
+
+  .list-table td {
+    display: block;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: none;
+    text-align: right;
+  }
+
+  .list-table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    text-transform: uppercase;
+    float: left;
+  }
+
+  .list-table tbody td:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .list-table {
+    border-bottom:  none;
+  }
+
+}

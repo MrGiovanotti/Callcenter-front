@@ -1,0 +1,12 @@
+.content {
+  width: calc(100% - 450px);
+  padding: 20px;
+  transition: all 0.3s;
+  position: absolute;
+  top: 50px;
+  right: 200px;
+}
+
+.content.active {
+  width: calc(100% - 280px);
+}

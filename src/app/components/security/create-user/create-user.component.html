@@ -1,0 +1,63 @@
+<div class="form-title"><i class="fas fa-plus"></i> Crear Usuario</div>
+<form [formGroup] = "form" (ngSubmit) = "create()" class="animated fadeInUp">
+  <div class="form-group">
+    <label>Nombre</label>
+    <input id="name" class="form-control text-capitalize bg-twitter-light" [ngClass]="{'is-invalid': hasErrors('name')}"
+      type="text" placeholder="Nombre del Usuario" formControlName="name" autocomplete="off">
+    <div *ngIf="hasErrors('name')" class="animated fadeInLeft text-danger w-100 text-right"><small>{{ requiredFieldMessage }}</small></div>
+  </div>
+
+  <div class="form-group">
+    <label>Usuario <i *ngIf="form.status === 'PENDING'" class="fa fa-spinner fa-spin"></i></label>
+    <input class="form-control bg-twitter-light" [ngClass]="{'is-invalid': hasErrors('username')}" type="text"
+      placeholder="Usuario para iniciar sesión" formControlName="username">
+    <div
+      *ngIf="form.get('username').errors && form.get('username').errors.usernameexists && form.get('username').dirty"
+      class="animated fadeInLeft text-danger w-100 text-right"><small>Este
+        usuario ya existe</small></div>
+    <div *ngIf="hasRequiredError('username')" class="animated fadeInLeft text-danger w-100 text-right">
+      <small>{{ requiredFieldMessage }}</small></div>
+  </div>
+
+  <div class="form-group">
+    <label>Contraseña</label>
+    <input class="form-control bg-twitter-light" [ngClass]="{'is-invalid': hasErrors('password')}" type="password"
+      placeholder="Contraseña para iniciar sesión" formControlName="password">
+    <div *ngIf="hasRequiredError('password')" class="animated fadeInLeft text-danger w-100 text-right">
+      <small>{{ requiredFieldMessage }}</small></div>
+  </div>
+
+  <div class="form-group">
+    <label>Repetir contraseña</label>
+    <input class="form-control bg-twitter-light" [ngClass]="{'is-invalid': hasErrors('repeatPassword')}" type="password"
+      placeholder="Repita la contraseña" formControlName="repeatPassword">
+    <div *ngIf="hasRequiredError('repeatPassword')" class="animated fadeInLeft text-danger w-100 text-right">
+      <small>{{ requiredFieldMessage }}</small></div>
+  </div>
+
+  <app-spinner *ngIf="availableAuthorities.length == 0"></app-spinner>
+
+  <div class="form-group" *ngIf="availableAuthorities.length > 0">
+    <label>Rol</label>
+    <select formControlName = "authority" class="form-control bg-twitter-light">
+      <option value="">-- Seleccione un rol --</option>
+      <option *ngFor="let authority of availableAuthorities" value = "{{ authority.id }}">{{ authority.alias }}</option>
+    </select>
+    <div *ngIf="hasErrors('authority')" class="animated fadeInLeft text-danger w-100 text-right"><small>{{ requiredFieldMessage }}</small></div>
+  </div>
+
+  <div class="radio">
+    <input type="radio" formControlName="enabled" value="true" id="true">
+    <label for="true"> Habilitado</label>
+
+    <input type="radio" formControlName="enabled" value="false" id="false">
+    <label for="false"> Inhabilitado</label>
+  </div>
+
+
+
+  <div class="form-group mt-5">
+    <button [disabled] = "!form.valid || saving" class="btn rounded-pill btn-block" [ngClass]="!form.valid? 'btn-danger': 'btn-info'" type="submit"><i class="fas fa-save" [ngClass]="{'fa-sync fa-spin': saving}"></i> Guardar</button>
+  </div>
+
+</form>

@@ -1,0 +1,30 @@
+<ul class="pagination bg-twitter-light" *ngIf="pages.length > 0">
+  <li class="page-item" *ngIf="!paginator.first">
+    <a class="page-link" [routerLink]="[route, 0]">
+      Primera
+    </a>
+  </li>
+  <li class="page-item" *ngIf="!paginator.first">
+    <a class="page-link" [routerLink]="[route, paginator.number - 1]">
+      &laquo;
+    </a>
+  </li>
+  <li *ngFor="let page of pages" class="page-item">
+    <span class="page-link btn btn-nashira text-white" *ngIf="paginator.number === page - 1">
+      {{page}}
+    </span>
+    <a *ngIf="paginator.number !== page - 1" class="page-link" [routerLink]="[route, page - 1]">
+      {{page}}
+    </a>
+  </li>
+  <li class="page-item" *ngIf="!paginator.last">
+    <a class="page-link" [routerLink]="[route, paginator.number + 1]">
+      &raquo;
+    </a>
+  </li>
+  <li class="page-item" *ngIf="!paginator.last">
+    <a class="page-link" [routerLink]="[route, paginator.totalPages - 1]">
+      Última
+    </a>
+  </li>
+</ul>

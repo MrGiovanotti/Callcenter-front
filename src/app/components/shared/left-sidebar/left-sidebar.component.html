@@ -1,0 +1,46 @@
+<nav id="sidebar" class="bg-twitter" [ngClass]="{'active': expandSidebar}">
+  <div class="sidebar-header text-center">
+    <p style="font-size: 25px;">NASHIRA</p>
+    <img (click) = "openEditMyProfileModal()" [src]="image | noImage" alt="user" class="mb-2 rounded-circle user-image">
+    <p>{{ user.name }}</p>
+  </div>
+  <ul class="list-unstyled components">
+
+    <li class="messages">
+      <div (click) = "expandRight.emit()" style="cursor: pointer;">
+        <i class="far fa-comments"></i> <span> Mensajes</span>
+      </div>
+    </li>
+
+    <li routerLinkActive="active">
+      <a [routerLink]="[DASHBOARD_ROUTE]">
+        <i class="fas fa-tachometer-alt"></i> <span> Dashboard</span>
+      </a>
+    </li>
+
+    <li *ngIf="isAdmin() || isSupervisor()" title="Ver, crear y editar usuarios" routerLinkActive="active">
+      <a [routerLink] = "[LIST_USERS_ROUTE]">
+        <i class="fas fa-users"> </i><span> Usuarios</span>
+      </a>
+    </li>
+
+    <li>
+      <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+        <i class="fas fa-database"></i> <span> Base</span>
+      </a>
+      <ul class="collapse list-unstyled" id="homeSubmenu">
+        <li>
+          <a href="#">Cargar</a>
+        </li>
+        <li>
+          <a href="#">Asignar</a>
+        </li>
+        <li>
+          <a href="#">Retirar</a>
+        </li>
+      </ul>
+    </li>
+
+  </ul>
+</nav>
+<app-edit-my-profile [user] = "user"></app-edit-my-profile>

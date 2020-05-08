@@ -1,0 +1,15 @@
+.right-sidebar {
+  width: 200px;
+  position: fixed;
+  transition: all 0.3s;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  overflow-y: scroll;
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  z-index: 1001;
+}
+
+.right-sidebar.expanded {
+  right: 0 !important;
+}

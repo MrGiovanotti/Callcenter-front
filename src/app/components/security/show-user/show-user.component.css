@@ -1,0 +1,9 @@
+img {
+  max-width: 300px;
+  height: 300px;
+}
+
+label.badge {
+  font-size: 1rem;
+  margin-top: 1rem;
+}

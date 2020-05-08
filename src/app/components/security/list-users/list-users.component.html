@@ -1,0 +1,55 @@
+<app-loading *ngIf="loading"></app-loading>
+<div *ngIf="!loading">
+  <form [formGroup] = "form">
+    <input formControlName = "searchingText" (keydown.enter) = "searchUser()" type="text" placeholder="Buscar" class="search bg-twitter-light mb-3">
+  </form>
+  <a [routerLink]="[CREATE_USER_ROUTE]" class="btn btn-info mb-3"><i class="fas fa-plus"></i> Crear Usuario</a>
+</div>
+<app-uimessage *ngIf="!loading && users.length === 0" [message]="noUsersMessage"></app-uimessage>
+<div *ngIf="!loading && users.length > 0">
+  <div class="paginator">
+    <app-paginator [paginator]="paginator" [route] = "PAGINATOR_ROUTE"></app-paginator>
+  </div>
+  <table class="table list-table animated fadeInLeft">
+    <thead>
+      <tr>
+        <th>Foto</th>
+        <th>Nombre</th>
+        <th>Usuario</th>
+        <th>Estado</th>
+        <th>Rol</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td data-label="Foto">
+          <img [src] = "user.image | noImage" alt="usuario" class="list-image rounded"
+            title="Ver información del usuario" (click) = "showUser(user)">
+        </td>
+        <td data-label="Nombre">{{ user.name }}</td>
+        <td data-label="Usuario">{{ user.username }}</td>
+        <td data-label="Estado">
+          <label class="badge"
+            [ngClass]="user.enabled? 'badge-success': 'badge-danger'">{{ user.enabled | changeBoolean: ['Habilitado', 'Inhabilitado'] }}</label>
+        </td>
+        <td data-label="Rol">
+          {{ user.authority.alias }}
+        </td>
+        <td data-label="Acciones">
+          <a [routerLink]="[UPDATE_USER_ROUTE, user.id]" class="btn btn-info mr-1" title="Editar">
+            <i class="fa fa-pen"></i>
+          </a>
+          <button type="button" (click) = "deleteUser(user)" class="btn btn-danger mr-1" title="Eliminar">
+            <i class="fa fa-trash"></i>
+          </button>
+          <button (click) = "openChangePasswordModal(user)" type="button" class="btn btn-warning" title="Cambiar Contraseña">
+            <i class="fa fa-key"></i>
+          </button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+<app-change-password [user] = "chosenUser"></app-change-password>

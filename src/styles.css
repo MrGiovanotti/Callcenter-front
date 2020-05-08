@@ -1,1 +1,188 @@
-/* You can add global styles to this file, and also import other style files */
+input, select {
+  height: 55px !important;
+  border: 0 !important;
+}
+
+/* Background colors */
+
+.bg-twitter {
+  background-color: #14202A;
+}
+
+.bg-twitter-light {
+  background-color: #182734 !important;
+  color: white !important;
+}
+
+.list-image {
+  width: 45px;
+  max-height: 90px;
+  cursor: pointer !important;
+}
+
+.user-image {
+  width: 90px;
+  height: 90px;
+  cursor: pointer !important;
+}
+
+.btn-nashira {
+  background-color: #4193B0;
+  color: white;
+}
+
+.btn-nashira:hover {
+  background-color: #4193B0;
+}
+
+table {
+  background-color: #182734;
+  color: white !important;
+  border-radius: 10px;
+}
+thead {
+  background-color: #14202A;
+}
+
+.form-title {
+  padding: 1rem;
+  margin-bottom: 2rem;
+  background: #182734;
+  color: #43A1F2;
+  font-size: 1.2rem;
+}
+
+/* ---------------------------------------------------
+    RADIO BUTTONS
+------------------------------------------------------ */
+.radio{
+  margin-top: 2rem;
+  text-align: center;
+}
+
+input[type = "radio"] {
+  display: none;
+}
+
+.radio label {
+  color: #4193B0;
+  padding: 5px 15px 5px 51px;
+  display: inline-block;
+  position: relative;
+  font-size: 1em;
+  border-radius: 3px;
+  cursor: pointer;
+  margin: 2px;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.radio label:hover {
+  background: rgba(0, 116, 217, 0.1);
+}
+
+.radio label:before {
+  content: "";
+  width: 17px;
+  height: 17px;
+  display: inline-block;
+  background: none;
+  border: 3px solid #4193B0;
+  border-radius: 50%;
+  position: absolute;
+  left: 17px;
+  top: 9px;
+}
+
+input[type = "radio"]:checked + label {
+  padding: 5px 15px;
+  background: #4193B0;
+  color: white;
+}
+
+input[type = "radio"]:checked + label:before {
+  display: none;
+}
+
+/* ---------------------------------------------------
+    PRESENTATION CARDS
+----------------------------------------------------- */
+
+.presentation-field div {
+  border-bottom: 1px solid #fff;
+  font-size: 1.5rem;
+}
+
+.presentation-field span {
+  font-size: small;
+  color: #43A0F2;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 1163px) {
+  #sidebar {
+    min-width: 80px;
+    max-width: 80px;
+    text-align: center;
+    /* margin-left: -80px; */
+  }
+  #sidebar .user-image {
+    width: 45px;
+    height: 45px;
+  }
+  #sidebar .sidebar-header>p {
+    display: none;
+  }
+  #sidebar a span {
+    font-size: 12px !important;
+  }
+  #sidebar .dropdown-toggle::after {
+    top: auto;
+    bottom: 5px;
+    right: 50%;
+    -webkit-transform: translateX(50%);
+    -ms-transform: translateX(50%);
+    transform: translateX(50%);
+  }
+  #sidebar ul li ul li a {
+    font-size: 11px !important;
+    padding-left: 5px !important;
+  }
+
+  #sidebar ul li.messages {
+    display: inline;
+  }
+
+  .right-sidebar {
+    right: -200px !important;
+  }
+
+  .navbar {
+    left: 80px !important;
+    right: 0 !important;
+  }
+
+  .navbar i.messages {
+    display: inline !important;
+  }
+
+  .content {
+    width: calc(100% - 80px) !important;
+    right: 0 !important;
+  }
+}
+
+@media (max-width: 250px) {
+  #btnLogout {
+    position: fixed;
+    left: 4px;
+    top: 4px;
+    font-size: 12px;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+}
